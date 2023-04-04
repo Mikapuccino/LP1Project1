@@ -70,18 +70,18 @@ namespace LampPuzzle
             // Yellow
             Console.WriteLine("Welcome to" + "\u001b[33m" + " Lamp Puzzle!\n");
 
-            Console.WriteLine("\u001b[37m" + "In this game you have to turn "+
-            "on 3 lamps by pressing 3 buttons that will affect if they are "+ 
-            "on or off. You use the buttons " + "\u001b[34m" + " 1" + 
-            "\u001b[37m" + "," + "\u001b[34m" + " 2" + "\u001b[37m" + "," + 
-            "\u001b[34m" + " 3"+ "\u001b[37m" + " to change the " +
+            Console.WriteLine("\u001b[37m" + "In this game you have to turn " +
+            "on 3 lamps by pressing 3 buttons that will affect if they are " +
+            "on or off. You use the buttons " + "\u001b[34m" + " 1" +
+            "\u001b[37m" + "," + "\u001b[34m" + " 2" + "\u001b[37m" + "," +
+            "\u001b[34m" + " 3" + "\u001b[37m" + " to change the " +
             "lamps status and after each selection an update will be "
-            + "displayed on screen. Pressing 1 will change the first lamp, "+ 
-            "pressing 2 will change the first and second lamps, pressing 3 "+ 
+            + "displayed on screen. Pressing 1 will change the first lamp, " +
+            "pressing 2 will change the first and second lamps, pressing 3 " +
             "will changes the second and third lamps. Be careful, " +
             "you only have " + "\u001b[31m" +
              "6 " + "\u001b[37m" + "turns to complete this task. Good Luck!\n");
-            
+
 
             // Repeats while the lamps are not all on
             while (GV.puzzleDone == false && GV.turns < 6)
@@ -101,7 +101,7 @@ namespace LampPuzzle
                 Console.WriteLine($"Lamp 2: {GV.lamp2}");
                 Console.Write(GV.lamp3 ? "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
-                
+
             }
             // Displays the "You Loose!" message if the player reaches 6 turns
             if (GV.turns == 6)
@@ -113,9 +113,11 @@ namespace LampPuzzle
             //turns on all lamps in under 6 turns
             else
             {
-               
+
+                Console.Write("\u001b[37m");
+                Console.WriteLine($"Turns needed: {GV.turns}");
                 Console.Write("\u001b[32m");
-                Console.WriteLine("Congratulations!");
+                Console.WriteLine("Congratulations, you won!");
             }
 
         }
