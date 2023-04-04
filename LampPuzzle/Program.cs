@@ -62,7 +62,15 @@ namespace LampPuzzle
             while (GV.puzzleDone == false)
             {
                 int buttonPressed = 0;
-            
+
+                Console.WriteLine("Welcome to Lamp Puzzle!\n");
+                Console.WriteLine("In this game you have to turn on 3 lamps "+ 
+                "by pressing 3 buttons that will affect if they are on or"+
+                " off. You use the buttons '1', '2' and '3' to change the "+
+                "lamps status and after each selection an update will be "
+                +"displayed on screen. Be careful, you only have 6 turns to "+
+                "complete this task. Good Luck!\n");
+
                 Console.WriteLine("Which button do you want to press?");
                 // User chooses the button to press
                 buttonPressed = int.Parse(Console.ReadLine());
