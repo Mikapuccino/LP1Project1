@@ -7,9 +7,13 @@ namespace LampPuzzle
     /// </summary>
     static class GV
     {
-        public static bool lamp1 = false;
-        public static bool lamp2 = false;
-        public static bool lamp3 = false;
+        public static Lamp lamp1;
+        public static Lamp lamp2;
+        public static Lamp lamp3;
+        
+        //public static bool lamp1 = false;
+        //public static bool lamp2 = false;
+        //public static bool lamp3 = false;
 
         public static bool puzzleDone = false;
 
@@ -33,7 +37,7 @@ namespace LampPuzzle
             // its current state
             if (button == 1)
             {
-                GV.lamp1 = !GV.lamp1;
+                GV.lamp1 = SwitchStates(GV.lamp1);
                 GV.turns++;
             }
 
@@ -41,9 +45,16 @@ namespace LampPuzzle
             // between them
             if (button == 2)
             {
-                bool OGLamp1 = GV.lamp1;
-                GV.lamp1 = GV.lamp2;
-                GV.lamp2 = OGLamp1;
+                if (((GV.lamp1 & Lamp.On) == Lamp.On) !=
+                ((GV.lamp2 & Lamp.On) == Lamp.On))
+                {
+                    GV.lamp1 = SwitchStates(GV.lamp1);
+                    GV.lamp2 = SwitchStates(GV.lamp2);
+                }
+                
+                //bool OGLamp1 = GV.lamp1;
+                //GV.lamp1 = GV.lamp2;
+                //GV.lamp2 = OGLamp1;
                 GV.turns++;
             }
 
@@ -51,17 +62,36 @@ namespace LampPuzzle
             // between them
             if (button == 3)
             {
-                bool OGLamp2 = GV.lamp2;
-                GV.lamp2 = GV.lamp3;
-                GV.lamp3 = OGLamp2;
+                if (((GV.lamp2 & Lamp.On) == Lamp.On) !=
+                ((GV.lamp3 & Lamp.On) == Lamp.On))
+                {
+                    GV.lamp2 = SwitchStates(GV.lamp2);
+                    GV.lamp3 = SwitchStates(GV.lamp3);
+                }
+                
+                //bool OGLamp2 = GV.lamp2;
+                //GV.lamp2 = GV.lamp3;
+                //GV.lamp3 = OGLamp2;
                 GV.turns++;
             }
 
             // If every lamp is on, the puzzle is done
-            if ((GV.lamp1 == true) && (GV.lamp2 == true) && (GV.lamp3 == true))
+            //if ((GV.lamp1 == true) && (GV.lamp2 == true) && (GV.lamp3 == true))
+            //{
+            //    GV.puzzleDone = true;
+            //}
+
+            if (((GV.lamp1 & Lamp.On) == Lamp.On) && 
+            ((GV.lamp2 & Lamp.On) == Lamp.On) &&
+            ((GV.lamp3 & Lamp.On) == Lamp.On))
             {
                 GV.puzzleDone = true;
             }
+        }
+
+        static Lamp SwitchStates(Lamp lampToSwitch)
+        {
+            return lampToSwitch ^= Lamp.On;
         }
 
         /// <summary>
@@ -120,11 +150,14 @@ namespace LampPuzzle
             "you only have " + "\u001b[31m" +
              "6 " + "\u001b[37m" + "turns to complete this task. Good Luck!\n");
 
-            Console.Write(GV.lamp1 ? "\u001b[32m" : "\u001b[31m");
+            Console.Write((GV.lamp1 & Lamp.On) == Lamp.On ?
+            "\u001b[32m" : "\u001b[31m");
             Console.WriteLine($"Lamp 1: {GV.lamp1}");
-            Console.Write(GV.lamp2 ? "\u001b[32m" : "\u001b[31m");
+            Console.Write((GV.lamp2 & Lamp.On) == Lamp.On ?
+            "\u001b[32m" : "\u001b[31m");
             Console.WriteLine($"Lamp 2: {GV.lamp2}");
-            Console.Write(GV.lamp3 ? "\u001b[32m" : "\u001b[31m");
+            Console.Write((GV.lamp3 & Lamp.On) == Lamp.On ?
+            "\u001b[32m" : "\u001b[31m");
             Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
 
             // Repeats while the lamps are not all on
@@ -140,11 +173,14 @@ namespace LampPuzzle
                 // Calls SwitchLamp method passing the button the user chose
                 SwitchLamp(buttonPressed);
                 // Displays the state of every lamp
-                Console.Write(GV.lamp1 ? "\u001b[32m" : "\u001b[31m");
+                Console.Write((GV.lamp1 & Lamp.On) == Lamp.On ?
+                "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 1: {GV.lamp1}");
-                Console.Write(GV.lamp2 ? "\u001b[32m" : "\u001b[31m");
+                Console.Write((GV.lamp2 & Lamp.On) == Lamp.On ?
+                "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 2: {GV.lamp2}");
-                Console.Write(GV.lamp3 ? "\u001b[32m" : "\u001b[31m");
+                Console.Write((GV.lamp3 & Lamp.On) == Lamp.On ?
+                "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
 
                 GameOver(GV.puzzleDone);
