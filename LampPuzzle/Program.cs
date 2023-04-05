@@ -14,6 +14,9 @@ namespace LampPuzzle
         public static bool puzzleDone = false;
 
         public static int turns = 0;
+        public static int onePressed = 0;
+        public static int twoPressed = 0;
+        public static int threePressed = 0;
     }
 
     class Program
@@ -34,6 +37,7 @@ namespace LampPuzzle
             {
                 GV.lamp1 = SwitchStates(GV.lamp1);
                 GV.turns++;
+                GV.onePressed++;
             }
 
             // If user chose button 2, switches the states of lamp 1 and 2
@@ -48,6 +52,7 @@ namespace LampPuzzle
                 }
 
                 GV.turns++;
+                GV.twoPressed++;
             }
 
             // If user chose button 3, switches the states of lamp 2 and 3
@@ -62,6 +67,7 @@ namespace LampPuzzle
                 }
                 
                 GV.turns++;
+                GV.threePressed++;
             }
 
             // If every lamp is on, the puzzle is complete
@@ -135,8 +141,8 @@ namespace LampPuzzle
             "\u001b[34m" + " 3" + "\u001b[37m" + " to change the " +
             "lamps status and after each selection an update will be "
             + "displayed on screen. Pressing 1 will change the first lamp, " +
-            "pressing 2 will change the first and second lamps, pressing 3 " +
-            "will changes the second and third lamps. Be careful, " +
+            "pressing 2 will switch the first and second lamps, pressing 3 " +
+            "will switch the second and third lamps. Be careful, " +
             "you only have " + "\u001b[31m" +
              "6 " + "\u001b[37m" + "turns to complete this task. Good Luck!\n");
 
@@ -174,6 +180,17 @@ namespace LampPuzzle
                 Console.Write((GV.lamp3 & Lamp.On) == Lamp.On ?
                 "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
+
+                // Displays how many times each button was pressed
+                Console.WriteLine("\u001b[37m" +
+                "Button 1 pressed: " + "\u001b[34m" +
+                $"{GV.onePressed}" + "\u001b[37m" + " times");
+                Console.WriteLine("\u001b[37m" +
+                "Button 2 pressed: " + "\u001b[34m" +
+                $"{GV.twoPressed}" + "\u001b[37m" + " times");
+                Console.WriteLine("\u001b[37m" +
+                "Button 3 pressed: " + "\u001b[34m" + 
+                $"{GV.threePressed}" + "\u001b[37m" + " times");
 
                 // Calls method to check if the game as ended
                 GameOver(GV.puzzleDone);
