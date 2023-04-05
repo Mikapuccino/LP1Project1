@@ -89,6 +89,11 @@ namespace LampPuzzle
             }
         }
 
+        /// <summary>
+        /// This method changes the state of the lamp
+        /// </summary>
+        /// <param name="lampToSwitch"></param>
+        /// <returns>The state of the lamp after the switch</returns>
         static Lamp SwitchStates(Lamp lampToSwitch)
         {
             return lampToSwitch ^= Lamp.On;
@@ -136,8 +141,7 @@ namespace LampPuzzle
         /// used in the method</param>
         static void Main(string[] args)
         {
-            // Set color for "Lamp Puzzle"
-            // Yellow
+            //Asni codes to change color of the text
             Console.WriteLine("Welcome to" + "\u001b[33m" + " Lamp Puzzle!\n");
 
             Console.WriteLine("\u001b[37m" + "In this game you have to turn " +
@@ -152,6 +156,8 @@ namespace LampPuzzle
             "you only have " + "\u001b[31m" +
              "6 " + "\u001b[37m" + "turns to complete this task. Good Luck!\n");
 
+            //Displays the initial state of all lamps to the player before 
+            //asking for the first command according to the enumeration value
             Console.Write((GV.lamp1 & Lamp.On) == Lamp.On ?
             "\u001b[32m" : "\u001b[31m");
             Console.WriteLine($"Lamp 1: {GV.lamp1}");
@@ -174,7 +180,7 @@ namespace LampPuzzle
 
                 // Calls SwitchLamp method passing the button the user chose
                 SwitchLamp(buttonPressed);
-                // Displays the state of every lamp
+                // Displays the state of every lamp using the enumeration value
                 Console.Write((GV.lamp1 & Lamp.On) == Lamp.On ?
                 "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 1: {GV.lamp1}");
