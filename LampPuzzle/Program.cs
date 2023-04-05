@@ -36,15 +36,17 @@ namespace LampPuzzle
 
             if (button == 2)
             {
-                GV.lamp1 = !GV.lamp1;
-                GV.lamp2 = !GV.lamp2;
+                bool OGLamp1 = GV.lamp1;
+                GV.lamp1 = GV.lamp2;
+                GV.lamp2 = OGLamp1;
                 GV.turns++;
             }
 
             if (button == 3)
             {
-                GV.lamp2 = !GV.lamp2;
-                GV.lamp3 = !GV.lamp3;
+                bool OGLamp2 = GV.lamp2;
+                GV.lamp2 = GV.lamp3;
+                GV.lamp3 = OGLamp2;
                 GV.turns++;
             }
 
@@ -82,6 +84,12 @@ namespace LampPuzzle
             "you only have " + "\u001b[31m" +
              "6 " + "\u001b[37m" + "turns to complete this task. Good Luck!\n");
 
+            Console.Write(GV.lamp1 ? "\u001b[32m" : "\u001b[31m");
+            Console.WriteLine($"Lamp 1: {GV.lamp1}");
+            Console.Write(GV.lamp2 ? "\u001b[32m" : "\u001b[31m");
+            Console.WriteLine($"Lamp 2: {GV.lamp2}");
+            Console.Write(GV.lamp3 ? "\u001b[32m" : "\u001b[31m");
+            Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
 
             // Repeats while the lamps are not all on
             while (GV.puzzleDone == false && GV.turns < 6)
@@ -103,24 +111,24 @@ namespace LampPuzzle
                 Console.Write(GV.lamp3 ? "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
 
-            }
-            // Displays the "You Lose!" message if the player reaches 6 turns
-            if (GV.turns == 6)
-            {
-                Console.Write("\u001b[31m");
-                Console.WriteLine("You lose!");
-            }
+            } 
+            
             // Displays the "Congratulations!" message if the player 
-            //turns on all lamps in under 6 turns
-            else
+            //turns on all lamps in 6 turns
+            if (GV.puzzleDone == true)
             {
-
                 Console.Write("\u001b[37m");
                 Console.WriteLine($"Turns needed: {GV.turns}");
                 Console.Write("\u001b[32m");
                 Console.WriteLine("Congratulations, you won!");
             }
-
+            
+            // Displays the "You Lose!" message if the player reaches 6 turns
+            else
+            {
+                Console.Write("\u001b[31m");
+                Console.WriteLine("You lose!");
+            }
         }
     }
 }
