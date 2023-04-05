@@ -88,6 +88,8 @@ namespace LampPuzzle
             // without every lamp on
             if ((WinCon == false) && (GV.turns == 6))
             {
+                Console.Write("\u001b[37m");
+                Console.WriteLine("You couldn't finish the task in 6 turns...");
                 Console.Write("\u001b[31m");
                 Console.WriteLine("You lose!");
             }
