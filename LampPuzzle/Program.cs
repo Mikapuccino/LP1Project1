@@ -88,7 +88,8 @@ namespace LampPuzzle
             {
                 int buttonPressed = 0;
 
-                Console.WriteLine("\u001b[37m" + "Which button do you want to press?");
+                Console.WriteLine("\u001b[37m" +
+                "Which button do you want to press?");
                 // User chooses the button to press
                 buttonPressed = int.Parse(Console.ReadLine());
 
@@ -103,11 +104,11 @@ namespace LampPuzzle
                 Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
 
             }
-            // Displays the "You Loose!" message if the player reaches 6 turns
+            // Displays the "You Lose!" message if the player reaches 6 turns
             if (GV.turns == 6)
             {
                 Console.Write("\u001b[31m");
-                Console.WriteLine("You loose!");
+                Console.WriteLine("You lose!");
             }
             // Displays the "Congratulations!" message if the player 
             //turns on all lamps in under 6 turns
