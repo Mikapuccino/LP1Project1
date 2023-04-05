@@ -10,15 +10,10 @@ namespace LampPuzzle
         public static Lamp lamp1;
         public static Lamp lamp2;
         public static Lamp lamp3;
-        
-        //public static bool lamp1 = false;
-        //public static bool lamp2 = false;
-        //public static bool lamp3 = false;
 
         public static bool puzzleDone = false;
 
         public static int turns = 0;
-
     }
 
     class Program
@@ -51,10 +46,7 @@ namespace LampPuzzle
                     GV.lamp1 = SwitchStates(GV.lamp1);
                     GV.lamp2 = SwitchStates(GV.lamp2);
                 }
-                
-                //bool OGLamp1 = GV.lamp1;
-                //GV.lamp1 = GV.lamp2;
-                //GV.lamp2 = OGLamp1;
+
                 GV.turns++;
             }
 
@@ -69,18 +61,10 @@ namespace LampPuzzle
                     GV.lamp3 = SwitchStates(GV.lamp3);
                 }
                 
-                //bool OGLamp2 = GV.lamp2;
-                //GV.lamp2 = GV.lamp3;
-                //GV.lamp3 = OGLamp2;
                 GV.turns++;
             }
 
-            // If every lamp is on, the puzzle is done
-            //if ((GV.lamp1 == true) && (GV.lamp2 == true) && (GV.lamp3 == true))
-            //{
-            //    GV.puzzleDone = true;
-            //}
-
+            // If every lamp is on, the puzzle is complete
             if (((GV.lamp1 & Lamp.On) == Lamp.On) && 
             ((GV.lamp2 & Lamp.On) == Lamp.On) &&
             ((GV.lamp3 & Lamp.On) == Lamp.On))
@@ -141,7 +125,7 @@ namespace LampPuzzle
         /// used in the method</param>
         static void Main(string[] args)
         {
-            //Asni codes to change color of the text
+            //Ascii codes to change color of the text
             Console.WriteLine("Welcome to" + "\u001b[33m" + " Lamp Puzzle!\n");
 
             Console.WriteLine("\u001b[37m" + "In this game you have to turn " +
@@ -191,6 +175,7 @@ namespace LampPuzzle
                 "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
 
+                // Calls method to check if the game as ended
                 GameOver(GV.puzzleDone);
             }
         }
