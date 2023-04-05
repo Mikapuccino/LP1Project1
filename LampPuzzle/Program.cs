@@ -21,19 +21,24 @@ namespace LampPuzzle
     {
         /// <summary>
         /// This method is used to switch the lamps states depending on the
-        /// button the user selected. Button 1 switches lamp 1, button 2
-        /// switches lamp 1 and 2, and button 3 switches lamp 2 and 3.
+        /// button the user selected. Button 1 switches lamp 1,
+        /// button 2 switches the states between lamp 1 and 2,
+        /// and button 3 switches the states between lamp 2 and 3.
         /// </summary>
         /// <param name="button">Number of the button selected</param>
         static void SwitchLamp(int button)
         {
 
+            // If user chose button 1, turns on or off lamp 1, depending on
+            // its current state
             if (button == 1)
             {
                 GV.lamp1 = !GV.lamp1;
                 GV.turns++;
             }
 
+            // If user chose button 2, switches the states of lamp 1 and 2
+            // between them
             if (button == 2)
             {
                 bool OGLamp1 = GV.lamp1;
@@ -42,6 +47,8 @@ namespace LampPuzzle
                 GV.turns++;
             }
 
+            // If user chose button 3, switches the states of lamp 2 and 3
+            // between them
             if (button == 3)
             {
                 bool OGLamp2 = GV.lamp2;
@@ -50,19 +57,48 @@ namespace LampPuzzle
                 GV.turns++;
             }
 
+            // If every lamp is on, the puzzle is done
             if ((GV.lamp1 == true) && (GV.lamp2 == true) && (GV.lamp3 == true))
             {
                 GV.puzzleDone = true;
             }
         }
 
+        /// <summary>
+        /// This method is used to check if the user completed the puzzle,
+        /// displaying a congratulatory message if the user completed the
+        /// puzzle, or loss message if the player couldn't solve the puzzle
+        /// within the turn limit
+        /// </summary>
+        /// <param name="WinCon">Used to check if the user completed
+        /// the puzzle or not</param>
+        static void GameOver(bool WinCon)
+        {
+            // Displays the "Congratulations!" message if the player 
+            //turns on all lamps in 6 turns
+            if (WinCon == true)
+            {
+                Console.Write("\u001b[37m");
+                Console.WriteLine($"Turns needed: {GV.turns}");
+                Console.Write("\u001b[32m");
+                Console.WriteLine("Congratulations, you won!");
+            }
+
+            // Displays the "You Lose!" message if the player reaches 6 turns
+            // without every lamp on
+            if ((WinCon == false) && (GV.turns == 6))
+            {
+                Console.Write("\u001b[31m");
+                Console.WriteLine("You lose!");
+            }
+        }
 
         /// <summary>
         /// While the lamps are not all on, the method repeats, asking the user
         /// to choose the button to press and calling the SwitchLamp method to
-        /// alter their states accordingly. It then displays the states of
-        /// every lamp. When all the lamps are on, the loop ends and
-        /// congratulates the user
+        /// alter their states accordingly. It calls the GameOver method
+        /// to check if the puzzle has been completed or the turn limit has
+        /// been reached
         /// </summary>
         /// <param name="args">Arguments passed by the user, not
         /// used in the method</param>
@@ -111,23 +147,7 @@ namespace LampPuzzle
                 Console.Write(GV.lamp3 ? "\u001b[32m" : "\u001b[31m");
                 Console.WriteLine($"Lamp 3: {GV.lamp3}\n");
 
-            } 
-            
-            // Displays the "Congratulations!" message if the player 
-            //turns on all lamps in 6 turns
-            if (GV.puzzleDone == true)
-            {
-                Console.Write("\u001b[37m");
-                Console.WriteLine($"Turns needed: {GV.turns}");
-                Console.Write("\u001b[32m");
-                Console.WriteLine("Congratulations, you won!");
-            }
-            
-            // Displays the "You Lose!" message if the player reaches 6 turns
-            else
-            {
-                Console.Write("\u001b[31m");
-                Console.WriteLine("You lose!");
+                GameOver(GV.puzzleDone);
             }
         }
     }
