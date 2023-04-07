@@ -163,10 +163,18 @@ namespace LampPuzzle
             {
                 int buttonPressed = 0;
 
-                Console.WriteLine("\u001b[37m" +
-                "Which button do you want to press?");
-                // User chooses the button to press
-                buttonPressed = int.Parse(Console.ReadLine());
+                while ((buttonPressed < 1) || (buttonPressed > 3))
+                {
+                    Console.WriteLine("\u001b[37m" +
+                    "Which button do you want to press?");
+                    // User chooses the button to press
+                    buttonPressed = int.Parse(Console.ReadLine());
+                    
+                    if ((buttonPressed < 1) || (buttonPressed > 3))
+                    {
+                        Console.WriteLine("Choose a valid button!");
+                    }
+                }
 
                 // Calls SwitchLamp method passing the button the user chose
                 SwitchLamp(buttonPressed);
