@@ -190,7 +190,7 @@ namespace LampPuzzle
                 $"{GV.twoPressed}" + "\u001b[37m" + " times");
                 Console.WriteLine("\u001b[37m" +
                 "Button 3 pressed: " + "\u001b[34m" + 
-                $"{GV.threePressed}" + "\u001b[37m" + " times");
+                $"{GV.threePressed}" + "\u001b[37m" + " times\n");
 
                 // Calls method to check if the game as ended
                 GameOver(GV.puzzleDone);
