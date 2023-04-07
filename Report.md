@@ -26,5 +26,18 @@ Nelson Milheiro -21904365
 Git repository used: https://github.com/Mikapuccino/LP1Project1
   
 ---
+Main Method:
 
+![Alt text](LampPuzzleMain.png)
 
+GameOver Method:
+
+![Alt text](LampPuzzleGameOver.png)
+
+SwitchLamp Method:
+
+![Alt text](SwitchLamp.png)
+
+SwitchStates Method:
+
+![Alt text](SwitchStates.png)
